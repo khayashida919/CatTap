@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A11B65011008000100000001 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A11B65011008000100000002 /* PrivacyInfo.xcprivacy */; };
 		4006B8B027E62C1700A507E4 /* TesterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4006B8AF27E62C1700A507E4 /* TesterViewController.swift */; };
 		4006B8B627E837C800A507E4 /* NekoType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4006B8B527E837C800A507E4 /* NekoType.swift */; };
 		4006B8B827E83CD200A507E4 /* higeyoshi_0.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 4006B8B727E83CD200A507E4 /* higeyoshi_0.MOV */; };
@@ -71,6 +72,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A11B65011008000100000002 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		4006B8AF27E62C1700A507E4 /* TesterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesterViewController.swift; sourceTree = "<group>"; };
 		4006B8B527E837C800A507E4 /* NekoType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NekoType.swift; sourceTree = "<group>"; };
 		4006B8B727E83CD200A507E4 /* higeyoshi_0.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = higeyoshi_0.MOV; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				40D92B8E2B9DA32C00631918 /* Entity */,
 				40FDD89B278721FE003BE4DB /* Resource */,
 				405CFA4E27856FD600E52840 /* Info.plist */,
+				A11B65011008000100000002 /* PrivacyInfo.xcprivacy */,
 				405CFA3027842C5300E52840 /* Main.storyboard */,
 				405CFA3327842C5500E52840 /* Assets.xcassets */,
 				405CFA3527842C5500E52840 /* LaunchScreen.storyboard */,
@@ -415,6 +418,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A11B65011008000100000001 /* PrivacyInfo.xcprivacy in Resources */,
 				405CFA3227842C5300E52840 /* Main.storyboard in Resources */,
 				40F4487827E850E000D2E4BE /* higeyoshi_1.jpg in Resources */,
 				40FDD89E27872224003BE4DB /* papa.mp3 in Resources */,
@@ -623,7 +627,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = DU45P949ZD;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = DU45P949ZD;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -640,12 +644,12 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = kayashida.CatTap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = WildCard_dev;
@@ -664,7 +668,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = DU45P949ZD;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GENERATE_INFOPLIST_FILE = YES;
@@ -680,12 +684,12 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = kayashida.CatTap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = CatTap_appstore;
