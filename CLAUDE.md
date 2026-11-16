@@ -39,14 +39,18 @@ pbxproj の Release に設定されたプロファイルは `CatTap_appstore` �
 
 ゲーム画面の `FreeGameViewController` だけはコードから開く。`instantiateViewController(identifier:creator:)` で生成するときに、ゲーム終了時に呼ぶ `onEnd` クロージャを渡してから push する。`init(coder:)` は `fatalError()` にしてあるので、segue の遷移先にはできない。ゲーム画面では戻るボタンを隠しており、画面を閉じる方法は 2 本指ダブルタップ（Storyboard 上の UITapGestureRecognizer）だけ。ジェスチャーの説明画面（`GestureTutorialViewController`）は、`isNeverShow` が false のときに、ゲーム画面の `viewDidLoad` から segue `toGestureTutorialViewController` でモーダル表示する。
 
+設定画面の「もっとおもちゃ」ボタンを押すと、おもちゃの選択画面（`ToyPickerViewController`）をコードで生成して push する。この画面は Storyboard を使わず、コードだけで組んでいる。設定画面の表は行を選べない設定（`allowsSelection="NO"`）なので、画面を移る操作は行ではなくボタンに付けている。
+
+プレミアムを持っていないときは、選択画面のいちばん上に「きゃっぷ プレミアム」の札を出す。札か鍵の付いたおもちゃを押すと、購入画面（`PaywallViewController`）をシートで開く。購入画面もコードだけで組んでいる。
+
 `PreviewViewController` には Storyboard ID が付いているが、Swift のコードからは使われていない。
 
 ### 状態の持ち方
 
 状態はシングルトンの `App.shared`（`Common/App.swift`）にまとめている。
 
-- おもちゃの大きさ・種類・数と、透明モードの設定（オン・オフ、間隔の時間、消えている時間）は `@Storage` を付けていないので、メモリにしか持たない。アプリを起動し直すと初期値に戻る。
-- `@Storage` を付けたプロパティ（`isNeverShow`、`bestScore`、`satisfyScore`、`isAppReview`、`isRecording`）は、値を JSON にエンコードした `Data` として UserDefaults に保存する。
+- おもちゃの大きさ・種類（`toy`）・数と、透明モードの設定（オン・オフ、間隔の時間、消えている時間）は `@Storage` を付けていないので、メモリにしか持たない。アプリを起動し直すと初期値に戻る。
+- `@Storage` を付けたプロパティ（`isNeverShow`、`bestScore`、`satisfyScore`、`isAppReview`、`isRecording`、`photoToyIDs`）は、値を JSON にエンコードした `Data` として UserDefaults に保存する。
 
 設定画面が `App.shared` に値を書き込み、`ToyScene.didMove(to:)` がゲーム開始時にその値を読む。
 
@@ -54,14 +58,32 @@ pbxproj の Release に設定されたプロファイルは `CatTap_appstore` �
 
 `FreeGameViewController` の `containerView` には Storyboard で `customClass="SKView"` を指定してある。この SKView で `ToyScene.sks` から読み込んだシーンを表示する。`ToyScene` は `.sks` 内のノードを名前（`toy`、`pointEffect`、`pointLabel`、`bestLabel`）で取り出すので、`.sks` 側でノード名を変えるとコードも直す必要がある。
 
-- おもちゃは `toy` ノードを `copy()` して設定された数まで増やす。`DispatchQueue.main.asyncAfter` を再帰で呼び、`name == "toy"` のノードすべてに力を加える処理と止める処理を、それぞれ繰り返す。
-- テクスチャ名は `String(describing: App.shared.kind)` で決めている。そのため `ToyKind` の case 名と Assets のイメージセット名（`bug`、`bird`、`fish`）をそろえておく必要がある。
+- おもちゃは `toy` ノードを `copy()` して設定された数まで増やし、そのあとで `setUp(_:as:)` がすべての `toy` ノードに見た目・大きさ・動きを設定する。新しい種類のおもちゃの設定もここに書き、複製したノードにも同じ設定が入るようにする。`DispatchQueue.main.asyncAfter` を再帰で呼び、`name == "toy"` のノードすべてに力を加える処理と止める処理を、それぞれ繰り返す。力を加える間隔と強さ（`impulseInterval`、`impulseScale`）は、`didMove(to:)` でおもちゃの種類ごとに変えている。ねずみが走る向きに顔を向ける処理は `update(_:)` にある。繰り返しの処理は `[weak self]` でシーンを持つので、ゲーム画面を閉じてシーンが解放されると止まる。
+- おもちゃの種類は `Toy`（`Entity/Toy.swift`）で表す。無料の虫・鳥・魚は `.standard(ToyKind)`、プレミアムのおもちゃは `.mouse`（ねずみ）、`.butterfly`（ちょうちょ）、`.laser`（レーザーポインター）、`.teaser`（ねこじゃらし）、`.yarn`（毛糸玉）、`.photo(UUID)`（写真のおもちゃ）。
+- 虫・鳥・魚のテクスチャ名は `String(describing: kind)` で決めている。そのため `ToyKind` の case 名と Assets のイメージセット名（`bug`、`bird`、`fish`）をそろえておく必要がある。写真のおもちゃ以外のプレミアムのおもちゃは画像素材を使わず、`ToyImage`（`Scene/FreeGame/ToyImage.swift`）がコードで描く。
+- ゲームを始めるとき、プレミアムを持っていないときと写真のファイルが見つからないときは、選ばれているおもちゃの代わりに虫を出す。
 - `ToyKind` と `ToySize` の rawValue は設定画面の UISegmentedControl のセグメント番号と対応している。case の順番を変えると、画面上の選択肢とずれる。
 - ゲームを終えるとき、スコアが 3 を超えていれば `satisfyScore` を 1 増やす。`satisfyScore` が 3 を超えていて `isAppReview` が false なら、`SKStoreReviewController` でレビューを依頼し、`isAppReview` を true にする。そのため、依頼は一度しか出ない。
 
 ### 録画
 
 設定で録画をオンにしておくと、Top でゲームを始めるときに `Recording.shared.start()` がフロントカメラで録画を始める。動画は `Documents/neko<yyyyMMddHHmmss>.mov` に保存する。ゲームを終えると `onEnd` で録画を止め、Top 画面にプレビューボタンを出す。このボタンから QuickLook で動画を再生できる。プレビューを閉じると、その動画ファイルは削除される。Info.plist で `UIFileSharingEnabled` と `LSSupportsOpeningDocumentsInPlace` を有効にしているので、Documents の中身は「ファイル」アプリからも見える。
+
+### プレミアム（課金）
+
+ねずみ・ちょうちょ・レーザーポインター・ねこじゃらし・毛糸玉と写真のおもちゃは、買い切りの課金アイテム（商品ID `kayashida.CatTap.premium`、非消耗型）を買うと使える。虫・鳥・魚とほかの設定は無料のまま使える。
+
+- `PremiumStore`（`Common/PremiumStore.swift`）が StoreKit 2 で購入・復元・購入状態の判定をする。購入したかどうかは端末に保存せず、起動時（`AppDelegate`）と購入状況が変わったときに `Transaction.currentEntitlements` から判定し直す。状態が変わると `PremiumStore.didChangeNotification` を送る。
+- 購入と復元は購入画面（`Scene/Paywall/PaywallViewController.swift`）でする。購入ボタンは画面の下に固定し、上の窓では `PaywallPreviewScene` がプレミアムのおもちゃを動かして見せる。購入か復元が終わると、購入ボタンに「使えるようになりました」と出してから画面を閉じる。
+- 購入画面は、どこから開いたか（`PaywallViewController.Context`）で見出しと窓の主役を変える。鍵の付いたおもちゃから開いたときはそのおもちゃを大きく動かし、写真のおもちゃから開いたときは切り抜いた写真の見本（Assets の `photo_toy_sample`。テスターのこまちの写真を切り抜いたもの）を出す。
+- 見た目は控えめにしている。明るい背景で、目立たせるのは金色の王冠と、軽く脈打つピンクの購入ボタンだけ。視差効果を減らす設定のときは、ボタンと紹介の動きを止める。
+- プレミアムのおもちゃには、おもちゃごとの効果音がある（`Common/ToySound.swift`）。音の素材は使わず、`Synth` で本物の鳴き声や物音に似せて合成し、`ToySoundPlayer` が `AVAudioEngine` で鳴らす。当たったときの音と、動き出したときにときどき小さく鳴らす音の 2 種類があり、おもちゃの左右の位置に合わせて音を左右に振る。無料の虫・鳥・魚は今までどおり `papa.mp3` を鳴らす。
+- 効果音は 1 つにつき鳴り方が 4 つ（`ToySound.variantCount`）あり、鳴らすたびに直前とは違うものを選ぶ。合成は初めて鳴らすときに裏のスレッドでするので、その音の最初の 1 回は合成が終わってから鳴る。音の大きさは `Synth.hitLoudness` と `Synth.moveLoudness` でそろえている。
+- 効果音を鳴らし始めるときに、オーディオセッションを `.ambient` にする。消音モードでは鳴らず、ほかのアプリの音楽も止めない。
+- 購入ボタンには App Store から読み込んだ `Product.displayPrice` を表示する。価格はコードに書かない。
+- 写真のおもちゃは `PhotoToyStore`（`Common/PhotoToyStore.swift`）が作る。iOS 17 以上では Vision で写っている猫や物を切り抜き、それより前の iOS と切り抜けなかったときは丸く切り抜く。画像は `Application Support/PhotoToys/<UUID>.png` に保存し、登録した順番は `App.shared.photoToyIDs` に持つ。登録できるのは 3 つまで。
+- Debug ビルドでは起動引数 `-PremiumDebugUnlock` を付けるとプレミアムを解放できる。シミュレータで見た目と動きを確かめるためのもので、Release ビルドには入らない。
+- 課金のテストには `CatTap/Premium.storekit` を使う。このファイルはアプリに含めず、共有スキームの Run に設定してある。そのため Xcode から実行したときだけ効き、`xcodebuild` でビルドして `simctl` で起動したときは商品を読み込めない。
 
 ### テスター紹介画面
 
@@ -76,6 +98,7 @@ pbxproj の Release に設定されたプロファイルは `CatTap_appstore` �
 - 署名は手動。Debug は `Apple Development` と `WildCard_dev`、Release は `iPhone Distribution` と `CatTap_appstore` を使う（Team ID は `DU45P949ZD`、Bundle ID は `kayashida.CatTap`）。
 - `PrivacyInfo.xcprivacy` で申告している API は UserDefaults（理由 `CA92.1`）だけ。ほかの Required Reason API を使い始めたら、ここにも書き足す。
 - シミュレータにはカメラがないので、録画は実機で確かめる。2 本指ダブルタップでゲームを閉じる操作も、実機で確かめる。
+- iOS 26.5 のシミュレータでは Vision の切り抜きが働かず、写真のおもちゃは丸い切り抜きになった。切り抜きは実機で確かめる。
 
 ## リリース作業用のディレクトリ
 
