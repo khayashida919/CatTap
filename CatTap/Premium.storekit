@@ -1,0 +1,37 @@
+{
+  "identifier" : "C47A0F5E-6B1D-4C2A-9E3F-1A2B3C4D5E01",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "500",
+      "familyShareable" : false,
+      "internalID" : "C47A0F5E-6B1D-4C2A-9E3F-1A2B3C4D5E02",
+      "localizations" : [
+        {
+          "description" : "ねずみ、ちょうちょ、レーザーポインターなど5種類のおもちゃと、写真から作るおもちゃが使えるようになります。",
+          "displayName" : "プレミアム",
+          "locale" : "ja_JP"
+        }
+      ],
+      "productID" : "kayashida.CatTap.premium",
+      "referenceName" : "プレミアム",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_locale" : "ja_JP",
+    "_storefront" : "JPN",
+    "_storeKitErrors" : [
+
+    ]
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 3,
+    "minor" : 0
+  }
+}

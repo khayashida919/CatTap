@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C47A0F000000000000000902 /* ToySound.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47A0F000000000000000901 /* ToySound.swift */; };
+		C47A0F000000000000000702 /* PaywallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47A0F000000000000000701 /* PaywallViewController.swift */; };
+		C47A0F000000000000000802 /* PaywallPreviewScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47A0F000000000000000801 /* PaywallPreviewScene.swift */; };
+		C47A0F000000000000000102 /* Toy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47A0F000000000000000101 /* Toy.swift */; };
+		C47A0F000000000000000202 /* PremiumStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47A0F000000000000000201 /* PremiumStore.swift */; };
+		C47A0F000000000000000302 /* PhotoToyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47A0F000000000000000301 /* PhotoToyStore.swift */; };
+		C47A0F000000000000000402 /* ToyImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47A0F000000000000000401 /* ToyImage.swift */; };
+		C47A0F000000000000000502 /* ToyPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47A0F000000000000000501 /* ToyPickerViewController.swift */; };
 		A11B65011008000100000001 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A11B65011008000100000002 /* PrivacyInfo.xcprivacy */; };
 		4006B8B027E62C1700A507E4 /* TesterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4006B8AF27E62C1700A507E4 /* TesterViewController.swift */; };
 		4006B8B627E837C800A507E4 /* NekoType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4006B8B527E837C800A507E4 /* NekoType.swift */; };
@@ -72,6 +80,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C47A0F000000000000000901 /* ToySound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToySound.swift; sourceTree = "<group>"; };
+		C47A0F000000000000000701 /* PaywallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallViewController.swift; sourceTree = "<group>"; };
+		C47A0F000000000000000801 /* PaywallPreviewScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallPreviewScene.swift; sourceTree = "<group>"; };
+		C47A0F000000000000000101 /* Toy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toy.swift; sourceTree = "<group>"; };
+		C47A0F000000000000000201 /* PremiumStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumStore.swift; sourceTree = "<group>"; };
+		C47A0F000000000000000301 /* PhotoToyStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoToyStore.swift; sourceTree = "<group>"; };
+		C47A0F000000000000000401 /* ToyImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyImage.swift; sourceTree = "<group>"; };
+		C47A0F000000000000000501 /* ToyPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyPickerViewController.swift; sourceTree = "<group>"; };
+		C47A0F000000000000000601 /* Premium.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Premium.storekit; sourceTree = "<group>"; };
 		A11B65011008000100000002 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		4006B8AF27E62C1700A507E4 /* TesterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesterViewController.swift; sourceTree = "<group>"; };
 		4006B8B527E837C800A507E4 /* NekoType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NekoType.swift; sourceTree = "<group>"; };
@@ -138,6 +155,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C47A0F000000000000000700 /* Paywall */ = {
+			isa = PBXGroup;
+			children = (
+				C47A0F000000000000000701 /* PaywallViewController.swift */,
+				C47A0F000000000000000801 /* PaywallPreviewScene.swift */,
+			);
+			path = Paywall;
+			sourceTree = "<group>";
+		};
+		C47A0F000000000000000500 /* ToyPicker */ = {
+			isa = PBXGroup;
+			children = (
+				C47A0F000000000000000501 /* ToyPickerViewController.swift */,
+			);
+			path = ToyPicker;
+			sourceTree = "<group>";
+		};
 		4006B8AE27E62C0400A507E4 /* Tester */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +213,8 @@
 		402905BF27C36151007AFE8C /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				C47A0F000000000000000700 /* Paywall */,
+				C47A0F000000000000000500 /* ToyPicker */,
 				40FDD8922785BE32003BE4DB /* Top */,
 				40FDD8912785BE06003BE4DB /* FreeGame */,
 				40CD2FCB29E448A5003C1AF9 /* Preview */,
@@ -225,6 +261,7 @@
 		405CFA2527842C5300E52840 /* CatTap */ = {
 			isa = PBXGroup;
 			children = (
+				C47A0F000000000000000601 /* Premium.storekit */,
 				405CFA2627842C5300E52840 /* AppDelegate.swift */,
 				40FDD8982785CCF7003BE4DB /* Common */,
 				402905BF27C36151007AFE8C /* Scene */,
@@ -271,6 +308,7 @@
 		40D92B8E2B9DA32C00631918 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				C47A0F000000000000000101 /* Toy.swift */,
 				40D92B8F2B9DA33B00631918 /* ToySize.swift */,
 				40D92B912B9DA38600631918 /* ToyKind.swift */,
 			);
@@ -289,6 +327,7 @@
 		40FDD8912785BE06003BE4DB /* FreeGame */ = {
 			isa = PBXGroup;
 			children = (
+				C47A0F000000000000000401 /* ToyImage.swift */,
 				405CFA3F27844B7000E52840 /* ToyScene.sks */,
 				405CFA3D2784477700E52840 /* ToyScene.swift */,
 				405CFA2E27842C5300E52840 /* FreeGameViewController.swift */,
@@ -316,6 +355,9 @@
 		40FDD8982785CCF7003BE4DB /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				C47A0F000000000000000901 /* ToySound.swift */,
+				C47A0F000000000000000301 /* PhotoToyStore.swift */,
+				C47A0F000000000000000201 /* PremiumStore.swift */,
 				40FDD8992785CD03003BE4DB /* App.swift */,
 				40330EED29DA822C00A12E28 /* Feedback.swift */,
 				405B82AA29E1798000021F2B /* Recording.swift */,
@@ -456,6 +498,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C47A0F000000000000000902 /* ToySound.swift in Sources */,
+				C47A0F000000000000000702 /* PaywallViewController.swift in Sources */,
+				C47A0F000000000000000802 /* PaywallPreviewScene.swift in Sources */,
+				C47A0F000000000000000102 /* Toy.swift in Sources */,
+				C47A0F000000000000000202 /* PremiumStore.swift in Sources */,
+				C47A0F000000000000000302 /* PhotoToyStore.swift in Sources */,
+				C47A0F000000000000000402 /* ToyImage.swift in Sources */,
+				C47A0F000000000000000502 /* ToyPickerViewController.swift in Sources */,
 				40FDD8972785CA75003BE4DB /* SettingTableViewController.swift in Sources */,
 				40CD2FD029E4517F003C1AF9 /* PreviewItem.swift in Sources */,
 				40F4488027E854C600D2E4BE /* UIImage+.swift in Sources */,

@@ -151,6 +151,30 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="pT1-mK-c01">
+                                        <rect key="frame" x="20" y="381.66666984558105" width="350" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pT1-mK-c01" id="pT1-mK-c02">
+                                            <rect key="frame" x="0.0" y="0.0" width="350" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pT1-mK-c03">
+                                                    <rect key="frame" x="24" y="8" width="302" height="44"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title="もっとおもちゃ"/>
+                                                    <connections>
+                                                        <action selector="moreToysAction:" destination="Qkx-L5-C4B" eventType="touchUpInside" id="pT1-mK-c04"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="pT1-mK-c03" firstAttribute="leading" secondItem="pT1-mK-c02" secondAttribute="leading" constant="24" id="pT1-mK-c05"/>
+                                                <constraint firstAttribute="trailing" secondItem="pT1-mK-c03" secondAttribute="trailing" constant="24" id="pT1-mK-c06"/>
+                                                <constraint firstItem="pT1-mK-c03" firstAttribute="top" secondItem="pT1-mK-c02" secondAttribute="top" constant="8" id="pT1-mK-c07"/>
+                                                <constraint firstAttribute="bottom" secondItem="pT1-mK-c03" secondAttribute="bottom" constant="8" id="pT1-mK-c08"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="おもちゃの数" id="nLI-I6-oyt">
@@ -323,6 +347,7 @@
                         <outlet property="intervalTimeSlider" destination="KNK-PD-JeK" id="tLr-r5-fjC"/>
                         <outlet property="isHiddenSwitch" destination="x1Y-Pj-FTV" id="wD7-H2-D7N"/>
                         <outlet property="kindSegmented" destination="gop-J4-AH9" id="Hpl-6G-E5W"/>
+                        <outlet property="moreToysButton" destination="pT1-mK-c03" id="pT1-mK-c09"/>
                         <outlet property="recordingSwitch" destination="ESt-tW-Elc" id="XAt-PD-bt9"/>
                         <outlet property="sizeSegmented" destination="J0H-FA-9GZ" id="3Rw-Iw-qJH"/>
                     </connections>

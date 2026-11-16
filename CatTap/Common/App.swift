@@ -6,7 +6,7 @@ final class App {
     /// おもちゃのサイズ
     var size: ToySize = .small
     /// おもちゃの種類
-    var kind: ToyKind = .bug
+    var toy: Toy = .standard(.bug)
     /// おもちゃの数
     var count = 1
     /// 透明モード
@@ -31,6 +31,9 @@ final class App {
     /// レコーディングするか
     @Storage("isRecording", defaultValue: false)
     var isRecording: Bool
-    
+    /// 写真から作ったおもちゃのID（登録した順）
+    @Storage("photoToyIDs", defaultValue: [])
+    var photoToyIDs: [UUID]
+
     private init() {}
 }

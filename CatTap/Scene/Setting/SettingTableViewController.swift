@@ -7,7 +7,8 @@ final class SettingTableViewController: UITableViewController {
     
     @IBOutlet private weak var sizeSegmented: UISegmentedControl!
     @IBOutlet private weak var kindSegmented: UISegmentedControl!
-    
+    @IBOutlet private weak var moreToysButton: UIButton!
+
     @IBOutlet private weak var countLabel: UILabel!
     @IBOutlet private weak var countSlider: UISlider!
     
@@ -27,8 +28,7 @@ final class SettingTableViewController: UITableViewController {
         recordingSwitch.isOn = App.shared.isRecording
         
         sizeSegmented.selectedSegmentIndex = ToySize.allCases.firstIndex(of: App.shared.size) ?? 0
-        kindSegmented.selectedSegmentIndex = ToyKind.allCases.firstIndex(of: App.shared.kind) ?? 0
-        
+
         countLabel.text = String(App.shared.count)
         countSlider.value = Float(App.shared.count)
         
@@ -43,14 +43,47 @@ final class SettingTableViewController: UITableViewController {
         hiddenMode(App.shared.isHiddenMode)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // おもちゃの選択画面から戻ったときにも、選択中のおもちゃを表示し直す
+        updateToySelection()
+    }
+
     @IBAction private func toySizeChangeAction(_ sender: UISegmentedControl) {
         let size = ToySize(rawValue: sender.selectedSegmentIndex) ?? .small
         App.shared.size = size
     }
-    
+
     @IBAction private func toyKindChangeAction(_ sender: UISegmentedControl) {
         let kind = ToyKind(rawValue: sender.selectedSegmentIndex) ?? .bug
-        App.shared.kind = kind
+        App.shared.toy = .standard(kind)
+        updateToySelection()
+    }
+
+    @IBAction private func moreToysAction(_ sender: UIButton) {
+        navigationController?.pushViewController(ToyPickerViewController(), animated: true)
+    }
+
+    /// 虫・鳥・魚の切り替えと「もっとおもちゃ」ボタンの表示を、選択中のおもちゃに合わせる
+    private func updateToySelection() {
+        if case .standard(let kind) = App.shared.toy {
+            kindSegmented.selectedSegmentIndex = ToyKind.allCases.firstIndex(of: kind) ?? 0
+        } else {
+            // プレミアムのおもちゃを選んでいる間は、どれも選ばれていない表示にする
+            kindSegmented.selectedSegmentIndex = UISegmentedControl.noSegment
+        }
+
+        var configuration = UIButton.Configuration.plain()
+        configuration.title = "もっとおもちゃ"
+        configuration.subtitle = App.shared.toy.isPremium
+            ? "選択中: \(ToyPickerViewController.title(for: App.shared.toy))"
+            : "ねずみ・ちょうちょ・写真など"
+        configuration.image = UIImage(systemName: "chevron.right")
+        configuration.imagePlacement = .trailing
+        configuration.imagePadding = 8
+        configuration.titleAlignment = .leading
+        moreToysButton.configuration = configuration
+        moreToysButton.contentHorizontalAlignment = .fill
     }
     
     @IBAction private func toyCountChangeAction(_ sender: UISlider) {
