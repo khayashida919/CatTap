@@ -5,18 +5,18 @@
   ],
   "products" : [
     {
-      "displayPrice" : "500",
+      "displayPrice" : "980",
       "familyShareable" : false,
       "internalID" : "C47A0F5E-6B1D-4C2A-9E3F-1A2B3C4D5E02",
       "localizations" : [
         {
-          "description" : "ねずみ、ちょうちょ、レーザーポインターなど5種類のおもちゃと、写真から作るおもちゃが使えるようになります。",
-          "displayName" : "プレミアム",
+          "description" : "ねずみ・ちょうちょなど5つのおもちゃと、写真から作るおもちゃが使えます",
+          "displayName" : "きゃっぷ プレミアム",
           "locale" : "ja_JP"
         }
       ],
       "productID" : "kayashida.CatTap.premium",
-      "referenceName" : "プレミアム",
+      "referenceName" : "Premium",
       "type" : "NonConsumable"
     }
   ],
