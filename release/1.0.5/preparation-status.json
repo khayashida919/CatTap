@@ -1,0 +1,77 @@
+{
+  "checkedAt": "2026-11-17T13:38:31+09:00",
+  "appId": "1610970639",
+  "versionId": "977479a4-88b7-41be-90b1-749827b421e0",
+  "versionLocalizationId": "864f1e27-6a58-420a-b898-df43cc00a486",
+  "version": "1.0.5",
+  "build": "1",
+  "ascState": "WAITING_FOR_REVIEW",
+  "ipaPath": "work/release/1.0.5/export/CatTap.ipa",
+  "ipaSHA256": "8bbb9a0a82cc661c5cf5e5eda0525e44748869aace1f597873071c807e6f2cd9",
+  "uploadCompleted": true,
+  "uploadDeliveryUUID": "8c93d41a-75d4-4a64-b632-46518c2484e0",
+  "buildId": "8c93d41a-75d4-4a64-b632-46518c2484e0",
+  "buildProcessingState": "VALID",
+  "buildAttached": true,
+  "usesNonExemptEncryption": false,
+  "usesIdfa": false,
+  "releaseType": "AFTER_APPROVAL",
+  "inAppPurchase": {
+    "id": "6835726934",
+    "productId": "kayashida.CatTap.premium",
+    "versionId": "7b77d3c6-fcab-4634-8507-55ad68d836ec",
+    "state": "WAITING_FOR_REVIEW",
+    "reviewScreenshot": "purchase screen with ¥980, captured in the iPhone 17 simulator via Xcode with Premium.storekit"
+  },
+  "reviewSubmissionId": "4c2484a9-2366-45e0-b86f-696150b8163f",
+  "submittedForReview": true,
+  "submittedDate": "2026-11-17T04:38:31.523Z",
+  "checks": [
+    {
+      "name": "Release archive (iOS 15 deployment target)",
+      "status": "PASS"
+    },
+    {
+      "name": "App Store IPA export",
+      "status": "PASS"
+    },
+    {
+      "name": "Bundled version, build number and privacy manifest; Premium.storekit not bundled",
+      "status": "PASS"
+    },
+    {
+      "name": "Distribution signature (Apple Distribution: 299 LLC)",
+      "status": "PASS"
+    },
+    {
+      "name": "Apple upload validation and processing",
+      "status": "PASS",
+      "detail": "1.0.5 (1) VALID; attached to version and submitted with the IAP"
+    },
+    {
+      "name": "Simulator: prey motion (しのび足) speed log, すいすい motion, settings toggle persistence, tutorial sound note",
+      "status": "PASS"
+    },
+    {
+      "name": "Simulator: purchase screen shows ¥980 with Premium.storekit",
+      "status": "PASS"
+    },
+    {
+      "name": "iPhone Air: photo toy cutout",
+      "status": "PASS",
+      "detail": "confirmed by the user"
+    },
+    {
+      "name": "Real purchase in sandbox",
+      "status": "UNVERIFIED"
+    },
+    {
+      "name": "Flee on tap, iPad motion feel, cat reactions",
+      "status": "UNVERIFIED"
+    },
+    {
+      "name": "iOS 15 runtime",
+      "status": "UNVERIFIED"
+    }
+  ]
+}

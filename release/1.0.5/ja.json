@@ -1,0 +1,34 @@
+{
+  "appId": "1610970639",
+  "version": "1.0.5",
+  "build": "1",
+  "locale": "ja",
+  "name": "きゃっぷ - 猫が遊ぶゲーム",
+  "subtitle": "魚・鳥・虫を追いかける猫用おもちゃ",
+  "keywords": "ねこ,あそぶ,遊び,猫じゃらし,子猫,室内,ペット,cat,kitten",
+  "whatsNew": "・「きゃっぷ プレミアム」（買い切り）を追加しました。ねずみ・ちょうちょ・レーザーポインター・ねこじゃらし・毛糸玉の5つのおもちゃと、写真に写っている猫や物を切り抜いて作るおもちゃが使えます。プレミアムのおもちゃには、それぞれに合った効果音が付いています。\n・おもちゃが獲物のように走ったり止まったり、こっそり歩いてから急に走り出したりする「しのび足」の動きを追加しました。はじめは「しのび足」になっていて、設定画面の「おもちゃの動き」で、これまでの動き「すいすい」に戻せます。\n・おもちゃの音はマナーモードを解除すると鳴ることを、操作の説明画面でお知らせするようにしました。",
+  "evaluationQueries": [
+    "ねこ あそぶ",
+    "猫 遊ぶ",
+    "猫用 ゲーム",
+    "ねこ おもちゃ",
+    "猫 おもちゃ",
+    "猫用 おもちゃ"
+  ],
+  "inAppPurchases": [
+    {
+      "productId": "kayashida.CatTap.premium",
+      "type": "NON_CONSUMABLE",
+      "referenceName": "Premium",
+      "displayName": "きゃっぷ プレミアム",
+      "description": "ねずみ・ちょうちょなど5つのおもちゃと、写真から作るおもちゃが使えます",
+      "basePrice": {
+        "territory": "JPN",
+        "customerPrice": 980
+      },
+      "familySharable": false,
+      "availableTerritories": 175,
+      "availableInNewTerritories": true
+    }
+  ]
+}
