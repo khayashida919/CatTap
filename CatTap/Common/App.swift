@@ -34,6 +34,9 @@ final class App {
     /// 写真から作ったおもちゃのID（登録した順）
     @Storage("photoToyIDs", defaultValue: [])
     var photoToyIDs: [UUID]
+    /// おもちゃの動き方
+    @Storage("motionStyle", defaultValue: ToyMotion.Style.stealthy)
+    var motionStyle: ToyMotion.Style
 
     private init() {}
 }

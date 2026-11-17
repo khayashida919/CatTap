@@ -8,6 +8,7 @@ final class SettingTableViewController: UITableViewController {
     @IBOutlet private weak var sizeSegmented: UISegmentedControl!
     @IBOutlet private weak var kindSegmented: UISegmentedControl!
     @IBOutlet private weak var moreToysButton: UIButton!
+    @IBOutlet private weak var motionStyleSegmented: UISegmentedControl!
 
     @IBOutlet private weak var countLabel: UILabel!
     @IBOutlet private weak var countSlider: UISlider!
@@ -28,6 +29,7 @@ final class SettingTableViewController: UITableViewController {
         recordingSwitch.isOn = App.shared.isRecording
         
         sizeSegmented.selectedSegmentIndex = ToySize.allCases.firstIndex(of: App.shared.size) ?? 0
+        motionStyleSegmented.selectedSegmentIndex = App.shared.motionStyle.rawValue
 
         countLabel.text = String(App.shared.count)
         countSlider.value = Float(App.shared.count)
@@ -58,6 +60,10 @@ final class SettingTableViewController: UITableViewController {
         let kind = ToyKind(rawValue: sender.selectedSegmentIndex) ?? .bug
         App.shared.toy = .standard(kind)
         updateToySelection()
+    }
+
+    @IBAction private func motionStyleChangeAction(_ sender: UISegmentedControl) {
+        App.shared.motionStyle = ToyMotion.Style(rawValue: sender.selectedSegmentIndex) ?? .stealthy
     }
 
     @IBAction private func moreToysAction(_ sender: UIButton) {

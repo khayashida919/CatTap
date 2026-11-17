@@ -177,6 +177,47 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="おもちゃの動き" id="mSt-yL-s01">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="mSt-yL-c01">
+                                        <rect key="frame" x="20" y="400" width="350" height="104"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mSt-yL-c01" id="mSt-yL-c02">
+                                            <rect key="frame" x="0.0" y="0.0" width="350" height="104"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="mSt-yL-c03">
+                                                    <rect key="frame" x="32" y="16" width="286" height="72"/>
+                                                    <subviews>
+                                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="mSt-yL-c04">
+                                                            <rect key="frame" x="0.0" y="0.0" width="286" height="32"/>
+                                                            <segments>
+                                                                <segment title="すいすい"/>
+                                                                <segment title="しのび足"/>
+                                                            </segments>
+                                                            <connections>
+                                                                <action selector="motionStyleChangeAction:" destination="Qkx-L5-C4B" eventType="valueChanged" id="mSt-yL-c05"/>
+                                                            </connections>
+                                                        </segmentedControl>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="すいすい: 画面の中を滑るように動き回ります&#10;しのび足: こっそり歩いてから、急に走り出します" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mSt-yL-c06">
+                                                            <rect key="frame" x="0.0" y="44" width="286" height="28"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="mSt-yL-c03" firstAttribute="top" secondItem="mSt-yL-c02" secondAttribute="top" constant="16" id="mSt-yL-c07"/>
+                                                <constraint firstAttribute="bottom" secondItem="mSt-yL-c03" secondAttribute="bottom" constant="16" id="mSt-yL-c08"/>
+                                                <constraint firstAttribute="trailing" secondItem="mSt-yL-c03" secondAttribute="trailing" constant="32" id="mSt-yL-c09"/>
+                                                <constraint firstItem="mSt-yL-c03" firstAttribute="leading" secondItem="mSt-yL-c02" secondAttribute="leading" constant="32" id="mSt-yL-c10"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection headerTitle="おもちゃの数" id="nLI-I6-oyt">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="fj0-9o-QCy">
@@ -348,6 +389,7 @@
                         <outlet property="isHiddenSwitch" destination="x1Y-Pj-FTV" id="wD7-H2-D7N"/>
                         <outlet property="kindSegmented" destination="gop-J4-AH9" id="Hpl-6G-E5W"/>
                         <outlet property="moreToysButton" destination="pT1-mK-c03" id="pT1-mK-c09"/>
+                        <outlet property="motionStyleSegmented" destination="mSt-yL-c04" id="mSt-yL-c11"/>
                         <outlet property="recordingSwitch" destination="ESt-tW-Elc" id="XAt-PD-bt9"/>
                         <outlet property="sizeSegmented" destination="J0H-FA-9GZ" id="3Rw-Iw-qJH"/>
                     </connections>

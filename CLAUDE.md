@@ -50,7 +50,7 @@ pbxproj の Release に設定されたプロファイルは `CatTap_appstore` �
 状態はシングルトンの `App.shared`（`Common/App.swift`）にまとめている。
 
 - おもちゃの大きさ・種類（`toy`）・数と、透明モードの設定（オン・オフ、間隔の時間、消えている時間）は `@Storage` を付けていないので、メモリにしか持たない。アプリを起動し直すと初期値に戻る。
-- `@Storage` を付けたプロパティ（`isNeverShow`、`bestScore`、`satisfyScore`、`isAppReview`、`isRecording`、`photoToyIDs`）は、値を JSON にエンコードした `Data` として UserDefaults に保存する。
+- `@Storage` を付けたプロパティ（`isNeverShow`、`bestScore`、`satisfyScore`、`isAppReview`、`isRecording`、`photoToyIDs`、`motionStyle`）は、値を JSON にエンコードした `Data` として UserDefaults に保存する。
 
 設定画面が `App.shared` に値を書き込み、`ToyScene.didMove(to:)` がゲーム開始時にその値を読む。
 
@@ -58,11 +58,16 @@ pbxproj の Release に設定されたプロファイルは `CatTap_appstore` �
 
 `FreeGameViewController` の `containerView` には Storyboard で `customClass="SKView"` を指定してある。この SKView で `ToyScene.sks` から読み込んだシーンを表示する。`ToyScene` は `.sks` 内のノードを名前（`toy`、`pointEffect`、`pointLabel`、`bestLabel`）で取り出すので、`.sks` 側でノード名を変えるとコードも直す必要がある。
 
-- おもちゃは `toy` ノードを `copy()` して設定された数まで増やし、そのあとで `setUp(_:as:)` がすべての `toy` ノードに見た目・大きさ・動きを設定する。新しい種類のおもちゃの設定もここに書き、複製したノードにも同じ設定が入るようにする。`DispatchQueue.main.asyncAfter` を再帰で呼び、`name == "toy"` のノードすべてに力を加える処理と止める処理を、それぞれ繰り返す。力を加える間隔と強さ（`impulseInterval`、`impulseScale`）は、`didMove(to:)` でおもちゃの種類ごとに変えている。ねずみが走る向きに顔を向ける処理は `update(_:)` にある。繰り返しの処理は `[weak self]` でシーンを持つので、ゲーム画面を閉じてシーンが解放されると止まる。
+- おもちゃは `toy` ノードを `copy()` して設定された数まで増やし、そのあとで `setUp(_:as:)` がすべての `toy` ノードに見た目と大きさを設定する。新しい種類のおもちゃの設定もここに書き、複製したノードにも同じ設定が入るようにする。しのび足のときは、ぶつかり方の円（`setUpPhysics(_:)`）も、おもちゃの大きさに合わせてノードごとに作り直す。
+- 動き方は設定画面の「おもちゃの動き」で「すいすい」（`.classic`）と「しのび足」（`.stealthy`、初期値）から選び、`App.shared.motionStyle`（`ToyMotion.Style`）に保存する。
+- 「すいすい」は 1.0.4 までの動き。`impulseInterval` 秒ごとにすべてのおもちゃを乱数の向きと強さで押し出し、0〜10 秒の乱数の間隔ですべて止める。ねずみ・レーザーポインター・ちょうちょは、押し出す間隔と強さを変えている。画面のどこを叩いても、最初のおもちゃを押し出す。ぶつかり方は `ToyScene.sks` の円をそのまま使い、壁は右と上だけ画面の外まで広げている。体の向きはねずみだけ走る向きに合わせる。
+- 「しのび足」では、おもちゃは獲物らしく動く。ノードごとに、素早く走る・ぴたっと止まる・その場でぴくぴく動く・こっそり歩いてから急に走り出す・いちばん近い画面の端に半分ほど隠れて顔を出す、を組み合わせて繰り返す。走り出すときは短い時間をかけて速くなり、ぴたっと止まるおもちゃは止まる直前に速さを少しゆるめ、隠れていたあとは速いほうの速さで飛び出す。叩かれたおもちゃと、すぐ近くを叩かれたおもちゃは、叩かれた場所から離れる向きに逃げてから少し止まる。速さや割合は `ToyMotion`（`Scene/FreeGame/ToyMotion.swift`）がおもちゃの種類ごとに決め、動かす処理は `ToyScene` の SKAction（キー `motion`）にある。画面の縁の壁は、おもちゃが半分ほど隠れられるように少し外側に置いている。
+- しのび足では、iPad でも iPhone と同じくらいの勢いに見えるように、走る・歩く・逃げる速さは画面の短い辺の長さに合わせて変える（幅 390pt の iPhone を 1 倍として 0.9〜1.8 倍）。
+- しのび足では体の向きを `update(_:)` で進む向きに合わせる。虫は頭を進む向きへ回し、魚とねずみは左右を反転し、毛糸玉は転がる速さに合わせて回す。ほかのおもちゃは回さない（写真のおもちゃがさかさまにならないように）。
 - おもちゃの種類は `Toy`（`Entity/Toy.swift`）で表す。無料の虫・鳥・魚は `.standard(ToyKind)`、プレミアムのおもちゃは `.mouse`（ねずみ）、`.butterfly`（ちょうちょ）、`.laser`（レーザーポインター）、`.teaser`（ねこじゃらし）、`.yarn`（毛糸玉）、`.photo(UUID)`（写真のおもちゃ）。
 - 虫・鳥・魚のテクスチャ名は `String(describing: kind)` で決めている。そのため `ToyKind` の case 名と Assets のイメージセット名（`bug`、`bird`、`fish`）をそろえておく必要がある。写真のおもちゃ以外のプレミアムのおもちゃは画像素材を使わず、`ToyImage`（`Scene/FreeGame/ToyImage.swift`）がコードで描く。
 - ゲームを始めるとき、プレミアムを持っていないときと写真のファイルが見つからないときは、選ばれているおもちゃの代わりに虫を出す。
-- `ToyKind` と `ToySize` の rawValue は設定画面の UISegmentedControl のセグメント番号と対応している。case の順番を変えると、画面上の選択肢とずれる。
+- `ToyKind`・`ToySize`・`ToyMotion.Style` の rawValue は設定画面の UISegmentedControl のセグメント番号と対応している。case の順番を変えると、画面上の選択肢とずれる。
 - ゲームを終えるとき、スコアが 3 を超えていれば `satisfyScore` を 1 増やす。`satisfyScore` が 3 を超えていて `isAppReview` が false なら、`SKStoreReviewController` でレビューを依頼し、`isAppReview` を true にする。そのため、依頼は一度しか出ない。
 
 ### 録画

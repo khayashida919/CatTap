@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C47A0F000000000000000A02 /* ToyMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47A0F000000000000000A01 /* ToyMotion.swift */; };
 		C47A0F000000000000000902 /* ToySound.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47A0F000000000000000901 /* ToySound.swift */; };
 		C47A0F000000000000000702 /* PaywallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47A0F000000000000000701 /* PaywallViewController.swift */; };
 		C47A0F000000000000000802 /* PaywallPreviewScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47A0F000000000000000801 /* PaywallPreviewScene.swift */; };
@@ -80,6 +81,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C47A0F000000000000000A01 /* ToyMotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyMotion.swift; sourceTree = "<group>"; };
 		C47A0F000000000000000901 /* ToySound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToySound.swift; sourceTree = "<group>"; };
 		C47A0F000000000000000701 /* PaywallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallViewController.swift; sourceTree = "<group>"; };
 		C47A0F000000000000000801 /* PaywallPreviewScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallPreviewScene.swift; sourceTree = "<group>"; };
@@ -327,6 +329,7 @@
 		40FDD8912785BE06003BE4DB /* FreeGame */ = {
 			isa = PBXGroup;
 			children = (
+				C47A0F000000000000000A01 /* ToyMotion.swift */,
 				C47A0F000000000000000401 /* ToyImage.swift */,
 				405CFA3F27844B7000E52840 /* ToyScene.sks */,
 				405CFA3D2784477700E52840 /* ToyScene.swift */,
@@ -498,6 +501,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C47A0F000000000000000A02 /* ToyMotion.swift in Sources */,
 				C47A0F000000000000000902 /* ToySound.swift in Sources */,
 				C47A0F000000000000000702 /* PaywallViewController.swift in Sources */,
 				C47A0F000000000000000802 /* PaywallPreviewScene.swift in Sources */,
