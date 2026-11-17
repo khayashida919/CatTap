@@ -37,7 +37,7 @@ pbxproj の Release に設定されたプロファイルは `CatTap_appstore` �
 
 `Main.storyboard` の UINavigationController が起点で、ルートは `TopViewController`。Top から設定画面（`SettingTableViewController`）とテスター紹介画面（`TesterViewController`）へは Storyboard の show segue で移る。
 
-ゲーム画面の `FreeGameViewController` だけはコードから開く。`instantiateViewController(identifier:creator:)` で生成するときに、ゲーム終了時に呼ぶ `onEnd` クロージャを渡してから push する。`init(coder:)` は `fatalError()` にしてあるので、segue の遷移先にはできない。ゲーム画面では戻るボタンを隠しており、画面を閉じる方法は 2 本指ダブルタップ（Storyboard 上の UITapGestureRecognizer）だけ。ジェスチャーの説明画面（`GestureTutorialViewController`）は、`isNeverShow` が false のときに、ゲーム画面の `viewDidLoad` から segue `toGestureTutorialViewController` でモーダル表示する。
+ゲーム画面の `FreeGameViewController` だけはコードから開く。`instantiateViewController(identifier:creator:)` で生成するときに、ゲーム終了時に呼ぶ `onEnd` クロージャを渡してから push する。`init(coder:)` は `fatalError()` にしてあるので、segue の遷移先にはできない。ゲーム画面では戻るボタンを隠しており、画面を閉じる方法は 2 本指ダブルタップ（Storyboard 上の UITapGestureRecognizer）だけ。ジェスチャーの説明画面（`GestureTutorialViewController`）は、`isNeverShow` が false のときに、ゲーム画面の `viewDidLoad` から segue `toGestureTutorialViewController` でモーダル表示する。この説明画面には、マナーモードを解除するとおもちゃの音が鳴ることも書いている。
 
 設定画面の「もっとおもちゃ」ボタンを押すと、おもちゃの選択画面（`ToyPickerViewController`）をコードで生成して push する。この画面は Storyboard を使わず、コードだけで組んでいる。設定画面の表は行を選べない設定（`allowsSelection="NO"`）なので、画面を移る操作は行ではなくボタンに付けている。
 
